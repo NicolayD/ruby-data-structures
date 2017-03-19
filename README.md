@@ -2,5 +2,7 @@ Solutions for the projects for [Linked Lists](http://www.theodinproject.com/cour
 
 Contains three projects:
 	- Linked Lists
+
 	- Searching Binary Trees
+	
 	- Knight's Travails
