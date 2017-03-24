@@ -2,5 +2,5 @@ Solutions for the projects for [Linked Lists](http://www.theodinproject.com/cour
 
 Contains three projects:  
 	- Linked Lists - completed
-	- Searching Binary Trees - completed, Build Tree method with insert method logic taken from Hector Correa's code blogpost http://hectorcorrea.com/blog/drawing-a-binary-tree-in-ruby/13, depth first search is only pre-order  
+	- Searching Binary Trees - completed, Build Tree method with insert method logic taken from Hector Correa's code blogpost http://hectorcorrea.com/blog/drawing-a-binary-tree-in-ruby/13 with his permission, depth first search is only pre-order  
 	- Knight's Travails  
