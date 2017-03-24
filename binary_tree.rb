@@ -68,16 +68,51 @@ class BinaryTree
 		end
 		return nil if queue.empty?
 	end
+
+	def depth_first_search value,node=@root	# Non-recursive pre-order depth first search. 
+		stack = []
+		stack.push node
+		while !stack.empty?
+			if value == stack.last.value
+				return "The node you're searching for is #{node} with value #{node.value}."
+			elsif	!node.left_child.nil?
+				stack.pop
+				stack.push node.left_child
+			else
+				stack.pop
+				stack.push node.right_child if !node.right_child.nil?
+			end
+			node = stack.last
+		end
+		return nil if stack.empty?
+	end
+
+	def dfs_rec value,node=@root	# Recursive pre-order depth first search. 
+		return nil if node.nil?
+		if value == node.value
+			return "The node you're searching for is #{node} with value #{node.value}."
+		elsif !node.left_child.nil?
+			dfs_rec(value,node.left_child)
+		else
+			dfs_rec(value,node.right_child)
+		end
+	end
 end
 
-
-
+# Tests:
+=begin
 tree = BinaryTree.new
 tree.build_tree [12,3,4,7,123,10,5,6,66]
 p tree.root.value
 p tree.breadth_first_search 3
+p tree.breadth_first_search 50 # Should return nil
+p tree.depth_first_search 6
+p tree.depth_first_search 100 # Should return nil
+p tree.dfs_rec 66
+p tree.dfs_rec 77	# Should return nil
 
 # The next two should be equal
 
 p tree.root.left_child.value
 p tree.root.left_child.right_child.parent_node.value
+=end
