@@ -3,4 +3,4 @@ Solutions for the projects for [Linked Lists](http://www.theodinproject.com/cour
 Contains three projects:  
 	- Linked Lists - completed
 	- Searching Binary Trees - completed, Build Tree method with insert method logic taken from Hector Correa's code blogpost http://hectorcorrea.com/blog/drawing-a-binary-tree-in-ruby/13 with his permission, depth first search is only pre-order  
-	- Knight's Travails  
+	- Knight's Travails  - partially complete, created a hash table with all possible moves and a graph with all position and their adjacent moves, but still can't figure out how to search for the shortest path from one point to another.

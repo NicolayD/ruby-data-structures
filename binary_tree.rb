@@ -15,6 +15,7 @@ class BinaryTree
 		@root = nil
 	end
 
+=begin 															# This part is unnecessary.
 	def insert node,parent
 		return node if parent.nil?
 		if node.value <= parent.value && parent.left_child.nil?
@@ -28,6 +29,7 @@ class BinaryTree
 		end
 		node
 	end
+=end
 
 	def build_tree array
 		@root = Node.new(array.shift)
@@ -100,7 +102,7 @@ class BinaryTree
 end
 
 # Tests:
-=begin
+#=begin
 tree = BinaryTree.new
 tree.build_tree [12,3,4,7,123,10,5,6,66]
 p tree.root.value
@@ -115,4 +117,4 @@ p tree.dfs_rec 77	# Should return nil
 
 p tree.root.left_child.value
 p tree.root.left_child.right_child.parent_node.value
-=end
+#=end
