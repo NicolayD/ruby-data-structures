@@ -175,7 +175,7 @@ end
 game = Board.new
 game.create_knight
 game.show
-=end 
+=end
 
 knight_moves([1,5],[8,2])
 knight_moves([1,1],[8,8])
