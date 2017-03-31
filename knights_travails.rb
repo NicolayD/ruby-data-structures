@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 class Vertex
 	attr_accessor :position, :adjacent
@@ -8,7 +7,6 @@ class Vertex
 		@adjacent = adjacent
 	end
 end
-
 
 class Graph
 	attr_accessor :vertices
@@ -46,8 +44,6 @@ class Board
 		@moves_graph_hash = {}
 		@old_positions = []
 	end
-
-
 
 	def show
 		puts @board.map { |line| line.map { |square| square.to_s.rjust(1) }.join(" ") }
@@ -100,52 +96,50 @@ class Board
 		end
 		graph
 	end
-
-
-	def knight_moves(start=@knight_position,finish)
-		# Refactor
-		game = Board.new
-		game.create_graph_hash(start)
-		graph = game.create_graph
-
-		moves = []
-		moves_count = 0
-		queue = []
-		n = 0
-		current = start
-
-		if start == finish
-			return "You're on the same tile."
-		elsif graph.vertices[0].adjacent.include? finish
-			return "You can make it in one move."
-		else
-			# What to do?
-		end
-		# puts "You reached #{finish} in #{move_count} moves." + moves
-		end
-	end
-
-
 end
 
-# Tests:
-=begin
+def knight_moves(start,finish)
+	game = Board.new
+	game.create_knight
+	game.knight_position = start
+	game.create_graph_hash game.knight_position
+	graph_hash = game.moves_graph_hash
+
+	if start == finish
+		return "You're on the same tile."
+	end
+
+	queue = []
+	visited = []
+	moves = 0
+	graph_hash[start].each { |new_tile| queue.push new_tile }
+
+	while true
+		moves += 1
+		if queue.include? finish
+			return "You can make it in 1 move" if moves == 1
+			return "You can make it in #{moves} moves." if moves > 1
+		else
+			queue.each do |visited_tile|
+				visited.push visited_tile
+			end
+
+			index = queue.length - 1
+			i = 0
+			while i < index
+				graph_hash[queue[i]].each do |new_tile| 
+					queue.push new_tile if !visited.include? new_tile
+					visited.push new_tile
+				end
+				i += 1
+			end
+			queue.slice!(0..i)
+		end
+	end
+	
+end
+
 game = Board.new
-game.create_knight
 game.show
 
-p game.knight_position
-p game.calculate_moves
-#p game.calculate_moves([5,5])
-game.create_graph_hash([5,5])
-#game.show_all_moves
-graph = game.create_graph
-p graph.vertices[2]
-b = graph.find_vertex [6,7]
-p b.adjacent
-
-#p game.moves_graph_hash[[1,3]].include? [2,5]
-#p game.moves_graph_hash[[1,3]].include? [2,6]
-
-# p game.knight_moves([5,5],[7,7])
-=end
+p knight_moves([7,8],[8,8])
