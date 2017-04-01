@@ -34,7 +34,8 @@ end
 
 
 class Board
-	attr_accessor :board, :knight_position, :moves_graph_hash, :old_positions
+	attr_accessor :board, :knight_position
+	attr_reader :moves_graph_hash, :old_positions
 
 	def initialize
 		@board = [["", 1, 2, 3, 4, 5, 6, 7, 8],
@@ -79,11 +80,11 @@ class Board
 		possible_moves
 	end
 
-	def create_graph_hash position=@knight_position										# Creates an adjacency list whose first key is the current position
+	def create_adjacency_list position=@knight_position										# Creates an adjacency list whose first key is the current position
 		@moves_graph_hash[position] = calculate_moves position   				# and includes all possible moves.
 		@old_positions.push position
 		@moves_graph_hash[position].each do |new_position|
-			create_graph_hash new_position if !@old_positions.include? new_position
+			create_adjacency_list new_position if !@old_positions.include? new_position
 		end	
 	end
 
@@ -108,7 +109,7 @@ def knight_moves(start,finish) 																			# Main method.
 	game = Board.new
 	game.create_knight
 	game.knight_position = start
-	game.create_graph_hash game.knight_position
+	game.create_adjacency_list game.knight_position
 	graph_hash = game.moves_graph_hash
 
 	if start == finish
